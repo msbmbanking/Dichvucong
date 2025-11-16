@@ -1,0 +1,72 @@
+<svg width="500" height="120" viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#DC143C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B22222;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFA500;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- National Emblem -->
+  <g transform="translate(10, 10)">
+    <!-- Outer circle with gradient -->
+    <circle cx="50" cy="50" r="48" fill="url(#redGrad)" stroke="#FFD700" stroke-width="2"/>
+    
+    <!-- Star -->
+    <path d="M 50 12 L 56 35 L 80 35 L 60 48 L 68 72 L 50 58 L 32 72 L 40 48 L 20 35 L 44 35 Z" 
+          fill="url(#goldGrad)" stroke="#FFA500" stroke-width="0.5"/>
+    
+    <!-- Rice stalks - left -->
+    <path d="M 18 45 Q 12 40, 15 35 Q 18 30, 22 35 Q 20 40, 18 45" fill="#FFD700" opacity="0.95"/>
+    <path d="M 15 50 Q 10 45, 13 40 Q 16 35, 20 40 Q 18 45, 15 50" fill="#FFD700" opacity="0.9"/>
+    <path d="M 17 55 Q 11 50, 14 45 Q 17 40, 21 45 Q 19 50, 17 55" fill="#FFD700" opacity="0.85"/>
+    
+    <!-- Rice stalks - right -->
+    <path d="M 82 45 Q 88 40, 85 35 Q 82 30, 78 35 Q 80 40, 82 45" fill="#FFD700" opacity="0.95"/>
+    <path d="M 85 50 Q 90 45, 87 40 Q 84 35, 80 40 Q 82 45, 85 50" fill="#FFD700" opacity="0.9"/>
+    <path d="M 83 55 Q 89 50, 86 45 Q 83 40, 79 45 Q 81 50, 83 55" fill="#FFD700" opacity="0.85"/>
+    
+    <!-- Cogwheel -->
+    <circle cx="50" cy="68" r="14" fill="#FFD700" stroke="#FFA500" stroke-width="0.5"/>
+    <circle cx="50" cy="68" r="10" fill="#DC143C" opacity="0.3"/>
+    <!-- Cogwheel teeth -->
+    <rect x="48" y="54" width="4" height="10" fill="#DC143C" rx="1"/>
+    <rect x="48" y="72" width="4" height="10" fill="#DC143C" rx="1"/>
+    <rect x="60" y="66" width="10" height="4" fill="#DC143C" rx="1"/>
+    <rect x="30" y="66" width="10" height="4" fill="#DC143C" rx="1"/>
+    <rect x="56" y="60" width="6" height="4" fill="#DC143C" rx="1" transform="rotate(45 59 62)"/>
+    <rect x="38" y="60" width="6" height="4" fill="#DC143C" rx="1" transform="rotate(-45 41 62)"/>
+    <rect x="56" y="72" width="6" height="4" fill="#DC143C" rx="1" transform="rotate(-45 59 74)"/>
+    <rect x="38" y="72" width="6" height="4" fill="#DC143C" rx="1" transform="rotate(45 41 74)"/>
+    
+    <!-- Banner with text -->
+    <rect x="22" y="80" width="56" height="14" fill="#DC143C" rx="2" stroke="#FFD700" stroke-width="0.5"/>
+    <text x="50" y="90" font-size="7" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="Arial, sans-serif">VIỆT NAM</text>
+  </g>
+  
+  <!-- Stylized C (Crane) -->
+  <g transform="translate(120, 25)">
+    <path d="M 20 5 Q 5 5, 5 20 Q 5 35, 20 35" stroke="#8B4513" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- Crane head and beak -->
+    <path d="M 15 10 L 20 15 L 15 20" stroke="#8B4513" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Horizontal lines (layers/movement) -->
+    <line x1="8" y1="12" x2="12" y2="12" stroke="#8B4513" stroke-width="2"/>
+    <line x1="8" y1="18" x2="12" y2="18" stroke="#8B4513" stroke-width="2"/>
+    <line x1="8" y1="24" x2="12" y2="24" stroke="#8B4513" stroke-width="2"/>
+    <line x1="8" y1="28" x2="12" y2="28" stroke="#8B4513" stroke-width="2"/>
+  </g>
+  
+  <!-- Main Text -->
+  <text x="165" y="50" font-size="28" font-weight="bold" fill="#8B4513" font-family="'Times New Roman', serif" letter-spacing="1px">
+    ỔNG DỊCH VỤ CÔNG QUỐC GIA
+  </text>
+  
+  <!-- Tagline -->
+  <text x="165" y="75" font-size="14" fill="#8B4513" font-family="Arial, sans-serif" letter-spacing="0.5px">
+    Kết nối, cung cấp thông tin và dịch vụ công mọi lúc, mọi nơi
+  </text>
+</svg>
+

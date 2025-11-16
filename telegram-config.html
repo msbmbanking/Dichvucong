@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cấu Hình Telegram Bot</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .config-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .config-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #8B4513;
+        }
+        .config-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .form-group label {
+            font-weight: 600;
+            color: #333;
+        }
+        .form-group input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        .form-group small {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: #8B4513;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #A0522D;
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        .status-info {
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .status-info.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status-info.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status-info.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #8B4513;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .chat-id-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .chat-id-item input {
+            flex: 1;
+        }
+        .chat-id-item button {
+            padding: 12px 20px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .chat-id-item button:hover {
+            background: #c82333;
+        }
+        .btn-test {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+        }
+        .btn-test:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .btn-test:active {
+            transform: translateY(0);
+        }
+        #testResults {
+            border-top: 2px solid #17a2b8;
+            padding-top: 15px;
+        }
+        .test-result-item {
+            padding: 8px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            border-left: 4px solid #17a2b8;
+            background: #f8f9fa;
+        }
+        .test-result-item.success {
+            border-left-color: #28a745;
+            background: #d4edda;
+        }
+        .test-result-item.error {
+            border-left-color: #dc3545;
+            background: #f8d7da;
+        }
+    </style>
+</head>
+<body>
+    <div class="config-container">
+        <a href="index.html" class="back-link">← Về trang chủ</a>
+        
+        <div class="config-header">
+            <h1>🤖 Cấu Hình Telegram Bot</h1>
+            <p>Thiết lập bot để nhận thông báo qua Telegram</p>
+        </div>
+
+        <div id="statusMessage" style="display: none;"></div>
+
+        <form id="telegramConfigForm" class="config-form">
+            <div class="form-group">
+                <label for="botToken">Bot Token <span style="color: red;">*</span></label>
+                <input type="text" id="botToken" name="botToken" required 
+                       placeholder="1234567890:ABCdefGHIjklMNOpqrsTUVwxyz">
+                <small>
+                    Lấy Bot Token từ <a href="https://t.me/BotFather" target="_blank">@BotFather</a> trên Telegram
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label>Chat IDs (Nhóm/Cá nhân) <span style="color: red;">*</span></label>
+                <div id="chatIdsContainer">
+                    <!-- Chat IDs sẽ được thêm động ở đây -->
+                </div>
+                <button type="button" id="addChatIdBtn" class="btn btn-secondary" style="margin-top: 10px;">
+                    + Thêm Chat ID
+                </button>
+                <small>
+                    Chat ID của bạn hoặc nhóm. Để lấy Chat ID, gửi tin nhắn cho bot <a href="https://t.me/userinfobot" target="_blank">@userinfobot</a> hoặc thêm bot vào nhóm và gửi tin nhắn bất kỳ, sau đó truy cập: https://api.telegram.org/bot&lt;YOUR_BOT_TOKEN&gt;/getUpdates
+                </small>
+            </div>
+
+            <div class="form-group" style="margin-top: 20px;">
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                    <input type="checkbox" id="testModeCheckbox" style="width: 20px; height: 20px; cursor: pointer;">
+                    <span><strong>🧪 Chế độ Test</strong> (Chỉ mô phỏng, không gửi thông báo thật)</span>
+                </label>
+                <small style="margin-left: 30px; color: #666;">
+                    Khi bật chế độ test, hệ thống sẽ chỉ log thông báo vào console, không gửi thật qua Telegram. Hữu ích để kiểm tra format thông báo.
+                </small>
+            </div>
+
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary">Lưu Cấu Hình</button>
+                <button type="button" class="btn btn-secondary" id="testBtn">Kiểm Tra Kết Nối</button>
+                <button type="button" class="btn btn-secondary" id="autoConfigBtn" style="background: #28a745;">⚡ Tự Động Cấu Hình</button>
+            </div>
+            
+            <div style="margin-top: 15px; padding: 10px; background: #fff3cd; border-radius: 4px; border-left: 4px solid #ffc107;">
+                <label style="display: flex; align-items: center; cursor: pointer;">
+                    <input type="checkbox" id="autoTestCheckbox" style="margin-right: 8px; width: 18px; height: 18px;">
+                    <span><strong>🤖 Tự động test sau khi lưu cấu hình</strong></span>
+                </label>
+                <small style="display: block; margin-top: 5px; color: #856404;">
+                    Khi bật, hệ thống sẽ tự động chạy test toàn bộ API sau khi lưu cấu hình thành công.
+                </small>
+            </div>
+
+            <!-- Khu vực test -->
+            <div style="margin-top: 30px; padding: 20px; background: #e7f3ff; border-radius: 8px; border: 2px solid #17a2b8;">
+                <h3 style="margin-top: 0; color: #17a2b8; display: flex; align-items: center; gap: 10px;">
+                    🧪 Khu Vực Test
+                </h3>
+                <p style="color: #666; margin-bottom: 15px;">
+                    Test các loại thông báo khác nhau. <strong>Lưu ý:</strong> Bật chế độ test ở trên để không gửi thông báo thật.
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 15px;">
+                    <button type="button" class="btn-test" data-test="appointment" style="background: #28a745;">
+                        📅 Test Đăng Ký Lịch Hẹn
+                    </button>
+                    <button type="button" class="btn-test" data-test="ubnd" style="background: #17a2b8;">
+                        🏛️ Test Đăng Ký UBND
+                    </button>
+                    <button type="button" class="btn-test" data-test="bank" style="background: #ffc107; color: #333;">
+                        🏦 Test Đồng Bộ Ngân Hàng
+                    </button>
+                    <button type="button" class="btn-test" data-test="delete" style="background: #dc3545;">
+                        🗑️ Test Xóa Đăng Ký
+                    </button>
+                    <button type="button" class="btn-test" data-test="clearAll" style="background: #6c757d;">
+                        🗑️ Test Xóa Tất Cả
+                    </button>
+                </div>
+                
+                <div style="display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;">
+                    <button type="button" class="btn btn-secondary" id="testAllBtn" style="flex: 1; min-width: 200px; background: #17a2b8;">
+                        🧪 Test Tất Cả Các Loại Thông Báo
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="testAllAPIBtn" style="flex: 1; min-width: 200px; background: #6f42c1;">
+                        🔬 Test Toàn Bộ API
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="autoTestBtn" style="flex: 1; min-width: 200px; background: #20c997;">
+                        🤖 Tự Động Test Ngay
+                    </button>
+                </div>
+
+                <!-- Kết quả test -->
+                <div id="testResults" style="margin-top: 20px; display: none;">
+                    <h4 style="color: #17a2b8; margin-bottom: 10px;">📊 Kết Quả Test:</h4>
+                    <div id="testResultsContent" style="background: white; padding: 15px; border-radius: 4px; max-height: 300px; overflow-y: auto; font-family: monospace; font-size: 0.9em;"></div>
+                </div>
+            </div>
+        </form>
+
+        <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 4px;">
+            <h3 style="margin-top: 0; color: #8B4513;">📖 Hướng Dẫn Nhanh</h3>
+            <ol style="line-height: 1.8; color: #666;">
+                <li><strong>Tạo Bot:</strong> Chat với <a href="https://t.me/BotFather" target="_blank">@BotFather</a>, gửi <code>/newbot</code> và làm theo hướng dẫn</li>
+                <li><strong>Lấy Bot Token:</strong> Sao chép token từ BotFather và dán vào ô "Bot Token"</li>
+                <li><strong>Lấy Chat ID cá nhân:</strong> Chat với <a href="https://t.me/userinfobot" target="_blank">@userinfobot</a> để xem Chat ID của bạn</li>
+                <li><strong>Lấy Chat ID nhóm:</strong> 
+                    <ul style="margin-top: 5px; padding-left: 20px;">
+                        <li>Thêm bot vào nhóm</li>
+                        <li>Gửi tin nhắn bất kỳ trong nhóm</li>
+                        <li>Truy cập: <code>https://api.telegram.org/bot&lt;YOUR_BOT_TOKEN&gt;/getUpdates</code></li>
+                        <li>Tìm <code>"chat":{"id":-1001234567890}</code> (số âm là Chat ID nhóm)</li>
+                    </ul>
+                </li>
+                <li><strong>Thêm nhiều Chat ID:</strong> Nhấn nút "+ Thêm Chat ID" để thêm Chat ID khác (cá nhân hoặc nhóm)</li>
+                <li><strong>Kiểm tra:</strong> Nhấn "Kiểm Tra Kết Nối" để gửi tin nhắn test</li>
+                <li><strong>Lưu:</strong> Nhấn "Lưu Cấu Hình" để hoàn tất</li>
+            </ol>
+            <p style="margin-top: 15px; padding: 10px; background: #fff3cd; border-left: 4px solid #ffc107; color: #856404;">
+                <strong>💡 Lưu ý:</strong> Chat ID nhóm thường bắt đầu bằng <code>-100</code> (số âm). Đảm bảo bot đã được thêm vào nhóm và có quyền gửi tin nhắn.
+            </p>
+            <p style="margin-top: 10px;">
+                <a href="HUONG_DAN_TELEGRAM_BOT.md" target="_blank" style="color: #8B4513; font-weight: 600; text-decoration: underline;">
+                    📄 Xem hướng dẫn chi tiết (file HUONG_DAN_TELEGRAM_BOT.md)
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <script src="telegram-bot.js"></script>
+    <script>
+            // Hàm tự động test
+            async function runAutoTest() {
+                // Đảm bảo test mode được bật để không gửi thông báo thật
+                const testModeCheckbox = document.getElementById('testModeCheckbox');
+                if (!testModeCheckbox.checked) {
+                    testModeCheckbox.checked = true;
+                    if (window.TelegramBot && window.TelegramBot.setTestMode) {
+                        window.TelegramBot.setTestMode(true);
+                    }
+                }
+                
+                // Chạy test toàn bộ API
+                if (window.TelegramBot && window.TelegramBot.testAllAPI) {
+                    try {
+                        const result = await window.TelegramBot.testAllAPI();
+                        
+                        if (result.success) {
+                            showStatus(`✅ [TỰ ĐỘNG TEST] Hoàn thành! ${result.totalPassed}/${result.totalTests} test passed (${result.successRate}%)`, 'success');
+                            
+                            let resultsHtml = `<div class="test-result-item success"><strong>✅ Tự Động Test - Hoàn Thành</strong></div>`;
+                            resultsHtml += `<div style="margin: 10px 0; padding: 10px; background: #d4edda; border-radius: 4px;">`;
+                            resultsHtml += `<strong>📊 Tổng Kết:</strong><br>`;
+                            resultsHtml += `✅ Passed: ${result.totalPassed}/${result.totalTests}<br>`;
+                            resultsHtml += `❌ Failed: ${result.totalFailed}/${result.totalTests}<br>`;
+                            resultsHtml += `📈 Tỷ lệ thành công: ${result.successRate}%<br>`;
+                            resultsHtml += `</div>`;
+                            
+                            resultsHtml += `<div style="margin-top: 10px;"><strong>📋 Chi Tiết:</strong></div>`;
+                            resultsHtml += `<div style="margin: 5px 0;">1. Cấu hình: ${result.details.config.passed}/${result.details.config.passed + result.details.config.failed} passed</div>`;
+                            resultsHtml += `<div style="margin: 5px 0;">2. Format message: ${result.details.formatting.passed}/${result.details.formatting.passed + result.details.formatting.failed} passed</div>`;
+                            resultsHtml += `<div style="margin: 5px 0;">3. Quản lý Chat ID: ${result.details.chatIdManagement.passed}/${result.details.chatIdManagement.passed + result.details.chatIdManagement.failed} passed</div>`;
+                            resultsHtml += `<div style="margin: 5px 0;">4. Gửi tin nhắn: ${result.details.messaging.passed}/${result.details.messaging.passed + result.details.messaging.failed} passed</div>`;
+                            resultsHtml += `<div style="margin: 5px 0;">5. Thông báo: ${result.details.notifications.passed}/${result.details.notifications.passed + result.details.notifications.failed} passed</div>`;
+                            
+                            resultsHtml += `<div style="margin-top: 10px; padding: 10px; background: #d1ecf1; border-radius: 4px;"><strong>💡 Lưu ý:</strong> Kiểm tra Console (F12) để xem chi tiết từng test case.</div>`;
+                            
+                            showTestResults(resultsHtml, 'success');
+                        } else {
+                            showStatus(`⚠️ [TỰ ĐỘNG TEST] Có ${result.totalFailed} test failed. Kiểm tra Console để xem chi tiết.`, 'error');
+                            
+                            let resultsHtml = `<div class="test-result-item error"><strong>⚠️ Tự Động Test - Có Lỗi</strong></div>`;
+                            resultsHtml += `<div style="margin: 10px 0; padding: 10px; background: #f8d7da; border-radius: 4px;">`;
+                            resultsHtml += `<strong>📊 Tổng Kết:</strong><br>`;
+                            resultsHtml += `✅ Passed: ${result.totalPassed}/${result.totalTests}<br>`;
+                            resultsHtml += `❌ Failed: ${result.totalFailed}/${result.totalTests}<br>`;
+                            resultsHtml += `📈 Tỷ lệ thành công: ${result.successRate}%<br>`;
+                            resultsHtml += `</div>`;
+                            resultsHtml += `<div style="margin-top: 10px; padding: 10px; background: #fff3cd; border-radius: 4px;"><strong>💡 Lưu ý:</strong> Kiểm tra Console (F12) để xem chi tiết các lỗi.</div>`;
+                            
+                            showTestResults(resultsHtml, 'error');
+                        }
+                    } catch (error) {
+                        showStatus(`❌ [TỰ ĐỘNG TEST] Lỗi: ${error.message}`, 'error');
+                        showTestResults(`<div class="test-result-item error"><strong>❌ Lỗi:</strong> ${error.message}</div>`, 'error');
+                    }
+                } else {
+                    showStatus('Lỗi: Hàm testAllAPI không khả dụng. Vui lòng kiểm tra lại file telegram-bot.js', 'error');
+                }
+            }
+
+            // Hàm tự động cấu hình token và chat ID
+            function autoConfigureTelegram() {
+                const defaultToken = '7699871995:AAErjz_8XGMLWHO05xVz3UqLUsGHny9_e2M';
+                const defaultChatId = '-1003488821832';
+                
+                // Điền token
+                document.getElementById('botToken').value = defaultToken;
+                
+                // Xóa các chat ID cũ và thêm chat ID mới
+                const chatIdContainer = document.getElementById('chatIdsContainer');
+                chatIdContainer.innerHTML = '';
+                addChatIdInput(defaultChatId);
+                
+                showStatus('✅ Đã tự động điền Token và Chat ID! Vui lòng nhấn "Lưu Cấu Hình" để lưu.', 'success');
+            }
+
+            // Load cấu hình hiện tại
+            document.addEventListener('DOMContentLoaded', function() {
+                const config = window.TelegramBot ? window.TelegramBot.getTelegramConfig() : null;
+                
+                // Kiểm tra URL parameter để xem có yêu cầu auto setup không
+                const urlParams = new URLSearchParams(window.location.search);
+                const autoSetup = urlParams.get('autosetup');
+                
+                if (config) {
+                    document.getElementById('botToken').value = config.botToken || '';
+                    
+                    // Load chat IDs (hỗ trợ cả cấu hình cũ và mới)
+                    const chatIds = config.chatIds || (config.chatId ? [config.chatId] : []);
+                    renderChatIds(chatIds);
+                    
+                    // Load test mode
+                    const testMode = window.TelegramBot ? window.TelegramBot.isTestMode() : false;
+                    document.getElementById('testModeCheckbox').checked = testMode;
+                    
+                    // Tự động test khi trang load nếu đã có cấu hình hợp lệ
+                    if (window.TelegramBot && window.TelegramBot.isTelegramConfigured()) {
+                        // Kiểm tra URL parameter để xem có yêu cầu auto test không
+                        const autoTest = urlParams.get('autotest');
+                        
+                        if (autoTest === 'true' || autoTest === '1') {
+                            // Tự động test sau 2 giây để đảm bảo trang đã load xong
+                            setTimeout(async () => {
+                                showStatus('🤖 Tự động chạy test khi trang load...', 'info');
+                                await runAutoTest();
+                            }, 2000);
+                        }
+                    }
+                } else {
+                    // Nếu chưa có cấu hình
+                    if (autoSetup === 'true' || autoSetup === '1') {
+                        // Tự động cấu hình và lưu
+                        setTimeout(() => {
+                            if (window.TelegramBot && window.TelegramBot.autoSetupTelegram) {
+                                window.TelegramBot.autoSetupTelegram();
+                                autoConfigureTelegram();
+                                showStatus('✅ Đã tự động cấu hình token và chat ID!', 'success');
+                                
+                                // Tự động test sau khi cấu hình
+                                const autoTest = urlParams.get('autotest');
+                                if (autoTest === 'true' || autoTest === '1') {
+                                    setTimeout(async () => {
+                                        showStatus('🤖 Tự động chạy test sau khi cấu hình...', 'info');
+                                        await runAutoTest();
+                                    }, 2000);
+                                }
+                            }
+                        }, 500);
+                    } else {
+                        // Nếu không có yêu cầu auto setup, chỉ thêm input mặc định
+                        renderChatIds(['']);
+                    }
+                }
+
+            // Xử lý nút tự động cấu hình
+            document.getElementById('autoConfigBtn').addEventListener('click', function() {
+                autoConfigureTelegram();
+            });
+
+            // Xử lý nút thêm chat ID
+            document.getElementById('addChatIdBtn').addEventListener('click', function() {
+                addChatIdInput('');
+            });
+
+            // Xử lý test mode checkbox
+            document.getElementById('testModeCheckbox').addEventListener('change', function() {
+                const testMode = this.checked;
+                if (window.TelegramBot && window.TelegramBot.setTestMode) {
+                    window.TelegramBot.setTestMode(testMode);
+                    const status = testMode ? 'đã bật' : 'đã tắt';
+                    showStatus(`🧪 Chế độ test ${status}`, testMode ? 'info' : 'success');
+                }
+            });
+
+            // Xử lý submit form
+            document.getElementById('telegramConfigForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const botToken = document.getElementById('botToken').value.trim();
+                const chatIds = getAllChatIds();
+
+                if (!botToken) {
+                    showStatus('Vui lòng nhập Bot Token!', 'error');
+                    return;
+                }
+
+                if (chatIds.length === 0 || chatIds.every(id => !id.trim())) {
+                    showStatus('Vui lòng thêm ít nhất một Chat ID!', 'error');
+                    return;
+                }
+
+                const testMode = document.getElementById('testModeCheckbox').checked;
+                const autoTest = document.getElementById('autoTestCheckbox').checked;
+                
+                if (window.TelegramBot && window.TelegramBot.saveTelegramConfig) {
+                    window.TelegramBot.saveTelegramConfig(botToken, chatIds, testMode);
+                    const testModeText = testMode ? ' (Chế độ Test: BẬT)' : ' (Chế độ Test: TẮT)';
+                    showStatus(`Đã lưu cấu hình thành công! (${chatIds.length} Chat ID)${testModeText}`, 'success');
+                    
+                    // Tự động test nếu được bật
+                    if (autoTest) {
+                        setTimeout(async () => {
+                            showStatus('🤖 Đang tự động chạy test toàn bộ API...', 'info');
+                            await runAutoTest();
+                        }, 1000);
+                    }
+                } else {
+                    showStatus('Lỗi: Không thể lưu cấu hình. Vui lòng kiểm tra lại file telegram-bot.js', 'error');
+                }
+            });
+
+            // Xử lý nút kiểm tra kết nối
+            document.getElementById('testBtn').addEventListener('click', async function() {
+                const botToken = document.getElementById('botToken').value.trim();
+                const chatIds = getAllChatIds().filter(id => id.trim());
+
+                if (!botToken) {
+                    showStatus('Vui lòng nhập Bot Token!', 'error');
+                    return;
+                }
+
+                if (chatIds.length === 0) {
+                    showStatus('Vui lòng thêm ít nhất một Chat ID!', 'error');
+                    return;
+                }
+
+                const testMode = document.getElementById('testModeCheckbox').checked;
+                
+                // Lưu tạm để test
+                if (window.TelegramBot && window.TelegramBot.saveTelegramConfig) {
+                    window.TelegramBot.saveTelegramConfig(botToken, chatIds, testMode);
+                }
+
+                const testModeText = testMode ? ' (Chế độ Test - không gửi thật)' : '';
+                showStatus(`Đang kiểm tra kết nối đến ${chatIds.length} Chat ID${testModeText}...`, 'info');
+
+                const testMessage = '🧪 <b>Kiểm Tra Kết Nối</b>\n\nĐây là tin nhắn kiểm tra từ hệ thống đăng ký lịch hẹn.';
+                
+                if (window.TelegramBot && window.TelegramBot.sendTelegramMessage) {
+                    const result = await window.TelegramBot.sendTelegramMessage(testMessage);
+                    
+                    if (result.success) {
+                        if (result.testMode) {
+                            showStatus(`🧪 [TEST MODE] Mô phỏng thành công! Đã test ${result.total} Chat ID. Kiểm tra console để xem chi tiết.`, 'info');
+                            console.log('📋 [TEST MODE] Chi tiết kết quả:', result);
+                        } else {
+                            showStatus(`✅ Kết nối thành công! Bot đã gửi tin nhắn kiểm tra đến ${result.successCount}/${result.total} Chat ID.`, 'success');
+                        }
+                    } else {
+                        showStatus('❌ Kết nối thất bại: ' + (result.error || 'Không xác định được lỗi'), 'error');
+                    }
+                } else {
+                    showStatus('Lỗi: Không thể kiểm tra kết nối. Vui lòng kiểm tra lại file telegram-bot.js', 'error');
+                }
+            });
+
+            // Xử lý các nút test riêng lẻ
+            document.querySelectorAll('.btn-test').forEach(btn => {
+                btn.addEventListener('click', async function() {
+                    const testType = this.getAttribute('data-test');
+                    await runSingleTest(testType);
+                });
+            });
+
+            // Xử lý nút test toàn bộ API
+            document.getElementById('testAllAPIBtn').addEventListener('click', async function() {
+                const testMode = document.getElementById('testModeCheckbox').checked;
+                
+                if (!testMode) {
+                    if (!confirm('⚠️ Chế độ test chưa được bật. Bạn có muốn bật chế độ test và tiếp tục? (Sẽ không gửi thông báo thật)')) {
+                        return;
+                    }
+                    document.getElementById('testModeCheckbox').checked = true;
+                    if (window.TelegramBot && window.TelegramBot.setTestMode) {
+                        window.TelegramBot.setTestMode(true);
+                    }
+                }
+
+                showStatus('🔬 Đang test toàn bộ API... Mở Console (F12) để xem chi tiết.', 'info');
+                showTestResults('🔬 Đang test toàn bộ API Telegram Bot...\n\nKiểm tra Console (F12) để xem kết quả chi tiết.', 'info');
+
+                if (window.TelegramBot && window.TelegramBot.testAllAPI) {
+                    try {
+                        const result = await window.TelegramBot.testAllAPI();
+                        
+                        if (result.success) {
+                            showStatus(`✅ [TEST API] Hoàn thành! ${result.totalPassed}/${result.totalTests} test passed (${result.successRate}%)`, 'success');
+                            
+                            // Hiển thị kết quả chi tiết
+                            let resultsHtml = `<div class="test-result-item success"><strong>✅ Test Toàn Bộ API - Hoàn Thành</strong></div>`;
+                            resultsHtml += `<div style="margin: 10px 0; padding: 10px; background: #d4edda; border-radius: 4px;">`;
+                            resultsHtml += `<strong>📊 Tổng Kết:</strong><br>`;
+                            resultsHtml += `✅ Passed: ${result.totalPassed}/${result.totalTests}<br>`;
+                            resultsHtml += `❌ Failed: ${result.totalFailed}/${result.totalTests}<br>`;
+                            resultsHtml += `📈 Tỷ lệ thành công: ${result.successRate}%<br>`;
+                            resultsHtml += `</div>`;
+                            
+                            resultsHtml += `<div style="margin-top: 10px;"><strong>📋 Chi Tiết:</strong></div>`;
+                            resultsHtml += `<div style="margin: 5px 0;">1. Cấu hình: ${result.details.config.passed}/${result.details.config.passed + result.details.config.failed} passed</div>`;
+                            resultsHtml += `<div style="margin: 5px 0;">2. Format message: ${result.details.formatting.passed}/${result.details.formatting.passed + result.details.formatting.failed} passed</div>`;
+                            resultsHtml += `<div style="margin: 5px 0;">3. Quản lý Chat ID: ${result.details.chatIdManagement.passed}/${result.details.chatIdManagement.passed + result.details.chatIdManagement.failed} passed</div>`;
+                            resultsHtml += `<div style="margin: 5px 0;">4. Gửi tin nhắn: ${result.details.messaging.passed}/${result.details.messaging.passed + result.details.messaging.failed} passed</div>`;
+                            resultsHtml += `<div style="margin: 5px 0;">5. Thông báo: ${result.details.notifications.passed}/${result.details.notifications.passed + result.details.notifications.failed} passed</div>`;
+                            
+                            resultsHtml += `<div style="margin-top: 10px; padding: 10px; background: #d1ecf1; border-radius: 4px;"><strong>💡 Lưu ý:</strong> Kiểm tra Console (F12) để xem chi tiết từng test case.</div>`;
+                            
+                            showTestResults(resultsHtml, 'success');
+                        } else {
+                            showStatus(`⚠️ [TEST API] Có ${result.totalFailed} test failed. Kiểm tra Console để xem chi tiết.`, 'error');
+                            
+                            let resultsHtml = `<div class="test-result-item error"><strong>⚠️ Test Toàn Bộ API - Có Lỗi</strong></div>`;
+                            resultsHtml += `<div style="margin: 10px 0; padding: 10px; background: #f8d7da; border-radius: 4px;">`;
+                            resultsHtml += `<strong>📊 Tổng Kết:</strong><br>`;
+                            resultsHtml += `✅ Passed: ${result.totalPassed}/${result.totalTests}<br>`;
+                            resultsHtml += `❌ Failed: ${result.totalFailed}/${result.totalTests}<br>`;
+                            resultsHtml += `📈 Tỷ lệ thành công: ${result.successRate}%<br>`;
+                            resultsHtml += `</div>`;
+                            resultsHtml += `<div style="margin-top: 10px; padding: 10px; background: #fff3cd; border-radius: 4px;"><strong>💡 Lưu ý:</strong> Kiểm tra Console (F12) để xem chi tiết các lỗi.</div>`;
+                            
+                            showTestResults(resultsHtml, 'error');
+                        }
+                    } catch (error) {
+                        showStatus(`❌ [TEST API] Lỗi: ${error.message}`, 'error');
+                        showTestResults(`<div class="test-result-item error"><strong>❌ Lỗi:</strong> ${error.message}</div>`, 'error');
+                    }
+                } else {
+                    showStatus('Lỗi: Hàm testAllAPI không khả dụng. Vui lòng kiểm tra lại file telegram-bot.js', 'error');
+                }
+            });
+
+            // Xử lý nút tự động test ngay
+            document.getElementById('autoTestBtn').addEventListener('click', async function() {
+                if (!window.TelegramBot || !window.TelegramBot.isTelegramConfigured()) {
+                    showStatus('⚠️ Vui lòng cấu hình Bot Token và Chat ID trước khi test!', 'error');
+                    return;
+                }
+                
+                await runAutoTest();
+            });
+
+            // Xử lý nút test tất cả
+            document.getElementById('testAllBtn').addEventListener('click', async function() {
+                const testMode = document.getElementById('testModeCheckbox').checked;
+                
+                if (!testMode) {
+                    if (!confirm('⚠️ Chế độ test chưa được bật. Bạn có muốn bật chế độ test và tiếp tục? (Sẽ không gửi thông báo thật)')) {
+                        return;
+                    }
+                    document.getElementById('testModeCheckbox').checked = true;
+                    if (window.TelegramBot && window.TelegramBot.setTestMode) {
+                        window.TelegramBot.setTestMode(true);
+                    }
+                }
+
+                showStatus('🧪 Đang test tất cả các loại thông báo... Mở Console (F12) để xem chi tiết.', 'info');
+                showTestResults('Đang test tất cả các loại thông báo...', 'info');
+
+                if (window.TelegramBot && window.TelegramBot.testAllNotifications) {
+                    const result = await window.TelegramBot.testAllNotifications();
+                    
+                    if (result.success) {
+                        showStatus('✅ [TEST MODE] Đã hoàn thành test tất cả các loại thông báo!', 'success');
+                        console.log('📊 [TEST MODE] Kết quả test:', result);
+                        
+                        // Hiển thị kết quả chi tiết
+                        let resultsHtml = '<div class="test-result-item success"><strong>✅ Test Tất Cả - Thành Công</strong></div>';
+                        resultsHtml += '<div class="test-result-item success">📅 Đăng ký lịch hẹn: ✅</div>';
+                        resultsHtml += '<div class="test-result-item success">🏛️ Đăng ký UBND: ✅</div>';
+                        resultsHtml += '<div class="test-result-item success">🏦 Đồng bộ ngân hàng: ✅</div>';
+                        resultsHtml += '<div class="test-result-item success">🗑️ Xóa đăng ký: ✅</div>';
+                        resultsHtml += '<div class="test-result-item success">🗑️ Xóa tất cả: ✅</div>';
+                        resultsHtml += '<div style="margin-top: 10px; padding: 10px; background: #d1ecf1; border-radius: 4px;"><strong>💡 Lưu ý:</strong> Kiểm tra Console (F12) để xem nội dung chi tiết của từng thông báo.</div>';
+                        showTestResults(resultsHtml, 'success');
+                    } else {
+                        showStatus('❌ [TEST MODE] Có lỗi khi test: ' + (result.error || 'Không xác định'), 'error');
+                        showTestResults(`<div class="test-result-item error"><strong>❌ Lỗi:</strong> ${result.error || 'Không xác định'}</div>`, 'error');
+                    }
+                } else {
+                    showStatus('Lỗi: Hàm testAllNotifications không khả dụng. Vui lòng kiểm tra lại file telegram-bot.js', 'error');
+                }
+            });
+
+            // Hàm chạy test từng loại
+            async function runSingleTest(testType) {
+                const testMode = document.getElementById('testModeCheckbox').checked;
+                
+                if (!testMode) {
+                    if (!confirm('⚠️ Chế độ test chưa được bật. Bạn có muốn bật chế độ test và tiếp tục? (Sẽ không gửi thông báo thật)')) {
+                        return;
+                    }
+                    document.getElementById('testModeCheckbox').checked = true;
+                    if (window.TelegramBot && window.TelegramBot.setTestMode) {
+                        window.TelegramBot.setTestMode(true);
+                    }
+                }
+
+                if (!window.TelegramBot || !window.TelegramBot.isTelegramConfigured()) {
+                    showStatus('⚠️ Vui lòng cấu hình Bot Token và Chat ID trước khi test!', 'error');
+                    return;
+                }
+
+                const testNames = {
+                    'appointment': 'Đăng Ký Lịch Hẹn',
+                    'ubnd': 'Đăng Ký UBND',
+                    'bank': 'Đồng Bộ Ngân Hàng',
+                    'delete': 'Xóa Đăng Ký',
+                    'clearAll': 'Xóa Tất Cả'
+                };
+
+                showStatus(`🧪 Đang test: ${testNames[testType]}...`, 'info');
+                showTestResults(`Đang test: ${testNames[testType]}...`, 'info');
+
+                try {
+                    let result = null;
+                    
+                    if (testType === 'appointment') {
+                        const testData = {
+                            fullName: 'Nguyễn Văn Test',
+                            phone: '0912345678',
+                            idNumber: '001234567890',
+                            address: '123 Đường Test',
+                            officer: 'Cán bộ Test',
+                            soBanNganh: 'UBND Phường/Xã',
+                            appointmentDate: new Date().toISOString().split('T')[0],
+                            appointmentTime: '0800-0830',
+                            jobType: 'Đăng ký khai sinh',
+                            purpose: 'Test mục đích',
+                            participants: '1',
+                            province: 'Hà Nội',
+                            ward: 'Phường Test',
+                            vnidLevel2: 'Có',
+                            bankSync: 'Có'
+                        };
+                        result = await window.TelegramBot.notifyNewAppointment(testData);
+                    } else if (testType === 'ubnd') {
+                        const testData = {
+                            fullName: 'Trần Thị Test',
+                            phone: '0987654321',
+                            email: 'test@example.com',
+                            idNumber: '001234567891',
+                            address: '456 Đường Test',
+                            organization: 'UBND Phường/Xã',
+                            officer: 'Cán bộ Test',
+                            appointmentDate: new Date().toISOString().split('T')[0],
+                            timeSlot: '09:00 - 09:30',
+                            jobType: 'Đăng ký kết hôn',
+                            jobDescription: 'Test mô tả công việc',
+                            participants: 2,
+                            vneidLevel2: 'Có',
+                            bankLinked: 'Có'
+                        };
+                        result = await window.TelegramBot.notifyNewUBNDAppointment(testData);
+                    } else if (testType === 'bank') {
+                        const testData = {
+                            fullName: 'Lê Văn Test',
+                            phone: '0901234567',
+                            email: 'banktest@example.com',
+                            idNumber: '001234567892',
+                            bankName: 'Ngân hàng Test',
+                            bankBranch: 'Chi nhánh Test',
+                            accountNumber: '1234567890',
+                            accountHolderName: 'Lê Văn Test'
+                        };
+                        result = await window.TelegramBot.notifyNewBankSync(testData, 'TEST1234');
+                    } else if (testType === 'delete') {
+                        const testData = {
+                            fullName: 'Nguyễn Văn Test',
+                            phone: '0912345678'
+                        };
+                        result = await window.TelegramBot.notifyDeleteAppointment(testData, 'appointment');
+                    } else if (testType === 'clearAll') {
+                        result = await window.TelegramBot.notifyClearAllAppointments(5, 'appointment');
+                    }
+
+                    if (result && (result.success || result.testMode)) {
+                        showStatus(`✅ [TEST] ${testNames[testType]} - Thành công!`, 'success');
+                        showTestResults(
+                            `<div class="test-result-item success">
+                                <strong>✅ ${testNames[testType]} - Thành công</strong><br>
+                                <small>Kiểm tra Console (F12) để xem nội dung chi tiết</small>
+                            </div>`,
+                            'success'
+                        );
+                    } else {
+                        showStatus(`❌ [TEST] ${testNames[testType]} - Thất bại`, 'error');
+                        showTestResults(
+                            `<div class="test-result-item error">
+                                <strong>❌ ${testNames[testType]} - Thất bại</strong><br>
+                                <small>${result?.error || 'Không xác định được lỗi'}</small>
+                            </div>`,
+                            'error'
+                        );
+                    }
+                } catch (error) {
+                    showStatus(`❌ [TEST] ${testNames[testType]} - Lỗi: ${error.message}`, 'error');
+                    showTestResults(
+                        `<div class="test-result-item error">
+                            <strong>❌ ${testNames[testType]} - Lỗi</strong><br>
+                            <small>${error.message}</small>
+                        </div>`,
+                        'error'
+                    );
+                }
+            }
+
+            // Hàm hiển thị kết quả test
+            function showTestResults(content, type) {
+                const resultsDiv = document.getElementById('testResults');
+                const resultsContent = document.getElementById('testResultsContent');
+                
+                if (content) {
+                    resultsContent.innerHTML = content;
+                    resultsDiv.style.display = 'block';
+                } else {
+                    resultsDiv.style.display = 'none';
+                }
+            }
+        });
+
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('statusMessage');
+            statusDiv.textContent = message;
+            statusDiv.className = 'status-info ' + type;
+            statusDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                if (type === 'success' || type === 'error') {
+                    statusDiv.style.display = 'none';
+                }
+            }, 5000);
+        }
+
+        function renderChatIds(chatIds) {
+            const container = document.getElementById('chatIdsContainer');
+            container.innerHTML = '';
+            
+            if (chatIds.length === 0) {
+                addChatIdInput('');
+            } else {
+                chatIds.forEach(chatId => {
+                    addChatIdInput(chatId);
+                });
+            }
+        }
+
+        function addChatIdInput(value = '') {
+            const container = document.getElementById('chatIdsContainer');
+            const div = document.createElement('div');
+            div.className = 'chat-id-item';
+            
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = '123456789 hoặc -1001234567890 (nhóm)';
+            input.value = value;
+            input.required = container.children.length === 0; // Chỉ input đầu tiên là required
+            
+            const removeBtn = document.createElement('button');
+            removeBtn.type = 'button';
+            removeBtn.textContent = 'Xóa';
+            removeBtn.onclick = function() {
+                if (container.children.length > 1) {
+                    div.remove();
+                    updateRequiredFields();
+                } else {
+                    showStatus('Phải có ít nhất một Chat ID!', 'error');
+                }
+            };
+            
+            div.appendChild(input);
+            div.appendChild(removeBtn);
+            container.appendChild(div);
+        }
+
+        function getAllChatIds() {
+            const container = document.getElementById('chatIdsContainer');
+            const inputs = container.querySelectorAll('input');
+            return Array.from(inputs).map(input => input.value.trim()).filter(id => id);
+        }
+
+        function updateRequiredFields() {
+            const container = document.getElementById('chatIdsContainer');
+            const inputs = container.querySelectorAll('input');
+            inputs.forEach((input, index) => {
+                input.required = index === 0;
+            });
+        }
+    </script>
+</body>
+</html>
+
