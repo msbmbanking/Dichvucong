@@ -124,7 +124,23 @@ async function sendTelegramMessage(message, parseMode = 'HTML') {
     };
 }
 
-// --- CÁC HÀM FORMAT TIN NHẮN (GIỮ NGUYÊN NHƯNG TỐI ƯU NHẸ) ---
+// --- CÁC HÀM FORMAT TIN NHẮN ---
+
+function formatDateToDDMMYYYY(dateString) {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return dateString;
+    return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+}
+
+function formatTime(timeString) {
+    if (!timeString) return '';
+    if (timeString.includes(':') && !timeString.includes('-')) return timeString;
+    if (timeString.includes('-')) { // Xử lý dạng 0730-0800
+        return timeString.replace(/(\d{2})(\d{2})-(\d{2})(\d{2})/, '$1:$2 - $3:$4');
+    }
+    return timeString;
+}
 
 function formatAppointmentMessage(data) {
     return `🔔 <b>ĐĂNG KÝ LỊCH HẸN MỚI</b>
@@ -191,24 +207,6 @@ async function notifyDeleteAppointment(data, type = 'appointment') {
 async function notifyClearAllAppointments(count, type = 'appointment') {
     if (!isTelegramConfigured()) return;
     await sendTelegramMessage(`🗑️ <b>ĐÃ XÓA TOÀN BỘ (${count}) ĐĂNG KÝ ${type.toUpperCase()}</b>`);
-}
-
-// --- HELPER FUNCTIONS ---
-
-function formatDateToDDMMYYYY(dateString) {
-    if (!dateString) return '';
-    const date = new Date(dateString);
-    if (isNaN(date.getTime())) return dateString;
-    return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
-}
-
-function formatTime(timeString) {
-    if (!timeString) return '';
-    if (timeString.includes(':') && !timeString.includes('-')) return timeString;
-    if (timeString.includes('-')) { // Xử lý dạng 0730-0800 hoặc 07:30-08:00
-        return timeString.replace(/(\d{2})(\d{2})-(\d{2})(\d{2})/, '$1:$2 - $3:$4');
-    }
-    return timeString;
 }
 
 // Export functions
