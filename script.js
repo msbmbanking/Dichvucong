@@ -29,15 +29,25 @@ function addAppointment(appointmentData) {
         if (!window.TelegramBot.isTelegramConfigured()) {
             if (window.TelegramBot.autoSetupTelegram) {
                 console.log('🔧 Tự động cấu hình Telegram Bot...');
-                window.TelegramBot.autoSetupTelegram();
+                // Gửi thông báo qua Telegram Bot API
+    if (window.TelegramBot) {
+        // Kiểm tra đã cấu hình chưa
+        if (!window.TelegramBot.isTelegramConfigured()) {
+            console.warn('⚠️ Telegram Bot chưa được cấu hình. Vui lòng truy cập trang Cấu hình Telegram Bot.');
+            // Tùy chọn: Có thể hiện thông báo nhỏ nhắc admin cấu hình
+        } else {
+            // Gửi thông báo
+            if (window.TelegramBot.notifyNewAppointment) {
+                window.TelegramBot.notifyNewAppointment(newAppointment)
+                    .then(result => {
+                         if (result && !result.success && !result.testMode) {
+                             console.warn('⚠️ Gửi Telegram thất bại:', result.error);
+                         }
+                    })
+                    .catch(err => console.error('❌ Lỗi Telegram:', err));
             }
         }
-        
-        // Gửi thông báo
-        if (window.TelegramBot.notifyNewAppointment) {
-            window.TelegramBot.notifyNewAppointment(newAppointment)
-                .then(result => {
-                    if (result && result.success) {
+    }
                         console.log('✅ Đã gửi thông báo Telegram thành công');
                     } else {
                         console.warn('⚠️ Gửi thông báo Telegram không thành công:', result?.error);
